@@ -24,7 +24,7 @@ public class PlayMusic {
 	//private static AudioStream audio;
 	private static Media hit;
 	private static MediaPlayer mediaPlayer;
-	private static Media slide = new Media(new File("Music\\slide.MP3").toURI().toString());
+	private static Media slide = initBlockSlide();
 	private static MediaPlayer mp = new MediaPlayer(slide);
 	
 	public static void playMusic(String filePath) {
@@ -42,6 +42,17 @@ public class PlayMusic {
 		catch(Exception e) {
 			JOptionPane.showMessageDialog(null, "Error playing music!");
 		}
+	}
+	
+	public static Media initBlockSlide() {
+		if (OperatingSystem.isMac() || OperatingSystem.isUnix()) {
+			return new Media(new File("Music//slide.MP3").toURI().toString());
+		}
+		if (OperatingSystem.isWindows()) {
+			return new Media(new File("Music\\slide.MP3").toURI().toString());
+			
+		}
+		else return null;
 	}
 	
 	public static void stop() {
@@ -69,6 +80,7 @@ public class PlayMusic {
 	}
 	
 	public static void playSlide() {
+		System.out.println("Block Sliding...");
 		mp.play();
 	}
 	

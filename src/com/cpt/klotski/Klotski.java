@@ -84,7 +84,14 @@ public class Klotski extends Application implements ActionListener {
     	
     	//getClass().getResource()
     	//getClass().getSystemResource();
-    	PlayMusic.playMusic("Music\\song2.MP3");
+    	if (OperatingSystem.isMac() || OperatingSystem.isUnix()) {
+    		OperatingSystem.checkOS();
+    		PlayMusic.playMusic("Music//song2.MP3");
+    	}
+    	if (OperatingSystem.isWindows()) {
+    		OperatingSystem.checkOS();
+    		PlayMusic.playMusic("Music\\song2.MP3");
+    	}
 
     	stage = s;
     	Pane buttonPane = new Pane();
